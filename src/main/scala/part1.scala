@@ -22,7 +22,12 @@ object part1 {
 
     val c = spark.read.format("csv").options(Map("inferSchema"->"true","delimiter"->",","header"->"true")).load(sourceFiles)
 
-    c.show()
+    c.createOrReplaceTempView("food_events")
+    //c.show()
+
+    val fe = spark.sql("select food_id, count(food_id) from food_events group by food_id")
+
+    fe.show()
 
   }
 }
