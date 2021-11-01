@@ -85,7 +85,7 @@ object assignment {
 
 
 
-    TsDiff.orderBy(col("weight").desc).show()
+    //TsDiff.orderBy(col("weight").desc).show()
     TsDiff.createOrReplaceTempView("food_event_weights")
 
     val p2ResultDF = spark.sql("select food_id, sum(weight)/100 as weight_score " +
@@ -96,10 +96,9 @@ object assignment {
     p2ResultDF.repartition(1).write.mode("overwrite").option("header","true").csv(path=part2Files)
 
 
-    val p3ResultDF = spark.sql("select * from food_event_weights where food_id = '7082' ")
-
-    p3ResultDF.show()
-
+    //-----------------------------------------------------------------------------
+    //Part 2 End
+    //-----------------------------------------------------------------------------
 
   }
 }
